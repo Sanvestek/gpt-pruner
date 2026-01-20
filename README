@@ -2,47 +2,57 @@
 
 > **Instantly declutter your ChatGPT DOM to reclaim browser performance.**
 
-When conversations grow long, ChatGPT keeps every single message in the browser's memory. This leads to high CPU usage, "stuttery" scrolling, and general lag. **GPT-Pruner** solves this by safely removing old message elements from the current view.
+---
+
+### 🚀 Why use this?
+
+When conversations grow long, ChatGPT keeps every single message in the browser's memory. This leads to high CPU usage, "stuttery" scrolling, and general lag. 
+
+**GPT-Pruner** safely removes old message elements from the current view so your PC can breathe again.
 
 ---
 
-## ✨ Key Features
+### ✨ Key Features
 
 * **⚡ Performance Boost:** Dramatically reduces DOM nodes for smoother scrolling.
+
 * **🎯 Customizable Depth:** Keep the last 3, 5, or 10 messages—you decide.
-* **🛡️ Non-Destructive:** Only hides elements from the current session. Refresh the page to restore full history.
-* **🔒 Privacy First:** No data leaves your machine. No tracking, no APIs, just pure local cleanup.
+
+* **🛡️ Non-Destructive:** Only hides elements from the current session. Refresh to restore.
+
+* **🔒 Privacy First:** Runs 100% locally in your browser.
 
 ---
 
-## 🛠️ Installation
+### 🛠️ Installation
 
-Since this is a custom developer utility, install it via Chrome's **Developer Mode**:
+1. **Download** this repository as a ZIP and extract it.
 
-1.  **Download** this repository as a ZIP and extract it.
-2.  Open Chrome and navigate to `chrome://extensions/`.
-3.  Enable **Developer mode** (toggle in the top-right corner).
-4.  Click **Load unpacked**.
-5.  Select the `gpt-pruner` folder.
+2. Open Chrome and navigate to `chrome://extensions/`.
 
----
+3. Enable **Developer mode** (toggle in the top-right corner).
 
-## 📖 How to Use
+4. Click **Load unpacked**.
 
-1.  Navigate to [chatgpt.com](https://chatgpt.com).
-2.  Click the **GPT-Pruner** icon in your extension toolbar.
-3.  Select the number of messages you want to keep visible.
-4.  Click **Prune Now** and feel the speed return.
+5. Select your `gpt-pruner` folder.
 
 ---
 
-## 🏗️ Architecture (First Principles)
+### 📖 How to Use
 
-This extension utilizes a **Decoupled Injection** pattern:
+1. Navigate to [chatgpt.com](https://chatgpt.com).
 
-* **Interface:** A lightweight `popup.html` provides the user controls.
-* **Execution:** The `chrome.scripting` API injects logic directly into the active tab.
-* **Memory Management:** We target the `<article>` tags with `data-testid="conversation-turn-"` to prune the DOM tree without breaking React's internal state.
+2. Click the **GPT-Pruner** icon in your toolbar.
+
+3. Select your message limit and click **Prune Now**.
+
+---
+
+### 🏗️ Architecture
+
+* **Interface:** Lightweight `popup.html`.
+* **Execution:** `chrome.scripting` API.
+* **Logic:** Targets `<article>` tags with `data-testid="conversation-turn-"`.
 
 ---
 *Created for developers who chat too much.*

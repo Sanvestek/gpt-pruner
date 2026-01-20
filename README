@@ -1,0 +1,37 @@
+# GPT-Pruner ✂️
+
+**GPT-Pruner** is a high-performance developer utility for heavy ChatGPT users. When conversations grow long, the browser struggle to render thousands of DOM elements, leading to "laggy" scrolling and high CPU usage. 
+
+This extension allows you to "prune" the viewable history to only the most recent messages, instantly freeing up system resources.
+
+---
+
+## 🚀 Features
+- **Instant DOM Pruning:** Remove old message elements from the current view with one click.
+- **Customizable Depth:** Choose how many recent messages to keep (Default is 3).
+- **Non-Destructive:** Only affects the current browser session. Refresh the page to bring back full history from OpenAI's servers.
+- **Privacy Focused:** Runs entirely locally. No data is collected or sent to third parties.
+
+## 🛠️ Installation (Developer Mode)
+Since this is a custom developer tool, install it via Chrome's "Unpacked" mode:
+
+1. **Clone or Download** this repository to your local machine.
+2. Open Chrome and navigate to `chrome://extensions/`.
+3. Enable **Developer mode** using the toggle in the top-right corner.
+4. Click **Load unpacked**.
+5. Select the folder containing the extension files.
+
+## 📖 How to Use
+1. Open any [ChatGPT](https://chatgpt.com) conversation.
+2. Click the **GPT-Pruner** icon in your extension toolbar.
+3. Select the number of messages you wish to keep visible.
+4. Click **Prune Now** and watch your browser performance recover.
+
+## 🏗️ Architecture (First Principles)
+This app follows a **Decoupled Injection** pattern:
+- **UI:** A standard HTML/JS popup for user input.
+- **Logic:** Direct DOM manipulation via the `chrome.scripting` API.
+- **Performance:** By removing `article` tags with the `data-testid="conversation-turn-"` attribute, we reduce the browser's paint and reflow calculations.
+
+---
+*Created for developers who chat too much.*

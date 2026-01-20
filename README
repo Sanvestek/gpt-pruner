@@ -1,37 +1,48 @@
 # GPT-Pruner ✂️
 
-**GPT-Pruner** is a high-performance developer utility for heavy ChatGPT users. When conversations grow long, the browser struggle to render thousands of DOM elements, leading to "laggy" scrolling and high CPU usage. 
+> **Instantly declutter your ChatGPT DOM to reclaim browser performance.**
 
-This extension allows you to "prune" the viewable history to only the most recent messages, instantly freeing up system resources.
+When conversations grow long, ChatGPT keeps every single message in the browser's memory. This leads to high CPU usage, "stuttery" scrolling, and general lag. **GPT-Pruner** solves this by safely removing old message elements from the current view.
 
 ---
 
-## 🚀 Features
-- **Instant DOM Pruning:** Remove old message elements from the current view with one click.
-- **Customizable Depth:** Choose how many recent messages to keep (Default is 3).
-- **Non-Destructive:** Only affects the current browser session. Refresh the page to bring back full history from OpenAI's servers.
-- **Privacy Focused:** Runs entirely locally. No data is collected or sent to third parties.
+## ✨ Key Features
 
-## 🛠️ Installation (Developer Mode)
-Since this is a custom developer tool, install it via Chrome's "Unpacked" mode:
+* **⚡ Performance Boost:** Dramatically reduces DOM nodes for smoother scrolling.
+* **🎯 Customizable Depth:** Keep the last 3, 5, or 10 messages—you decide.
+* **🛡️ Non-Destructive:** Only hides elements from the current session. Refresh the page to restore full history.
+* **🔒 Privacy First:** No data leaves your machine. No tracking, no APIs, just pure local cleanup.
 
-1. **Clone or Download** this repository to your local machine.
-2. Open Chrome and navigate to `chrome://extensions/`.
-3. Enable **Developer mode** using the toggle in the top-right corner.
-4. Click **Load unpacked**.
-5. Select the folder containing the extension files.
+---
+
+## 🛠️ Installation
+
+Since this is a custom developer utility, install it via Chrome's **Developer Mode**:
+
+1.  **Download** this repository as a ZIP and extract it.
+2.  Open Chrome and navigate to `chrome://extensions/`.
+3.  Enable **Developer mode** (toggle in the top-right corner).
+4.  Click **Load unpacked**.
+5.  Select the `gpt-pruner` folder.
+
+---
 
 ## 📖 How to Use
-1. Open any [ChatGPT](https://chatgpt.com) conversation.
-2. Click the **GPT-Pruner** icon in your extension toolbar.
-3. Select the number of messages you wish to keep visible.
-4. Click **Prune Now** and watch your browser performance recover.
+
+1.  Navigate to [chatgpt.com](https://chatgpt.com).
+2.  Click the **GPT-Pruner** icon in your extension toolbar.
+3.  Select the number of messages you want to keep visible.
+4.  Click **Prune Now** and feel the speed return.
+
+---
 
 ## 🏗️ Architecture (First Principles)
-This app follows a **Decoupled Injection** pattern:
-- **UI:** A standard HTML/JS popup for user input.
-- **Logic:** Direct DOM manipulation via the `chrome.scripting` API.
-- **Performance:** By removing `article` tags with the `data-testid="conversation-turn-"` attribute, we reduce the browser's paint and reflow calculations.
+
+This extension utilizes a **Decoupled Injection** pattern:
+
+* **Interface:** A lightweight `popup.html` provides the user controls.
+* **Execution:** The `chrome.scripting` API injects logic directly into the active tab.
+* **Memory Management:** We target the `<article>` tags with `data-testid="conversation-turn-"` to prune the DOM tree without breaking React's internal state.
 
 ---
 *Created for developers who chat too much.*
